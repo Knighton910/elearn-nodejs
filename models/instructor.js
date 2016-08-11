@@ -26,6 +26,9 @@ var InstructorSchema = mongoose.Schema({
 	}]
 });
 
+//  {{    *-^-*    Bottom of model   *-^-*    }}
+//   --------------------------------------
+
 var Instructor = module.exports = mongoose.model('instructor', InstructorSchema);
 
 module.exports.getInstructorByUsername = function(username, callback){

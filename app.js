@@ -21,6 +21,7 @@ var users = require('./routes/users');
 var classes = require('./routes/classes');
 var students = require('./routes/students');
 var instructors = require('./routes/instructors');
+var TAs = require('./routes/TAs')
 
 var app = express();
 
@@ -95,6 +96,7 @@ app.use('/users', users);
 app.use('/classes', classes);
 app.use('/students', students);
 app.use('/instructors', instructors);
+app.use('/TAs', TAs)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -127,5 +129,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
+console.log('App is running @3000')
 
 module.exports = app;
