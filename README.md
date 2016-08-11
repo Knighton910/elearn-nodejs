@@ -7,7 +7,12 @@ And students can sign up for a class after viewing the name of it & who teaching
 
 This is a medium sized app running on mongoDB, mongoose & express along with passport for validity, and as well using handlebarsJS templates
 
-enjoy 
+Start App -
+ ```bash
+$ npm start
+```
+```js
+ running @ localhost:3000
+ ```
 
-[note to self]
-optimize readme
+[note to self: optimize readme]
