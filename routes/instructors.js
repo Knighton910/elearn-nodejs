@@ -47,5 +47,4 @@ router.post('/classes/:id/lessons/new', function(req, res, next){
 	res.redirect('/instructors/classes');
 });
 
-
 module.exports = router;

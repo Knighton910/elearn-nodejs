@@ -20,6 +20,11 @@ var ClassSchema = mongoose.Schema({
 
 var Class = module.exports = mongoose.model('Class', ClassSchema);
 
+
+//  {{    *-^-*    Bottom of model   *-^-*    }}
+//   --------------------------------------
+
+
 // Fetch All Classes
 module.exports.getClasses = function(callback, limit){
 	Class.find(callback).limit(limit);
@@ -39,8 +44,13 @@ module.exports.addLesson = function(info, callback){
 
 	Class.findByIdAndUpdate(
 		class_id,
-		{$push:{"lessons":{lesson_number: lesson_number, lesson_title: lesson_title,lesson_body:lesson_body}}},
-		{safe: true, upsert: true},
-		callback
-		);
+		{$push: {
+			"lessons": {
+				lesson_number: lesson_number,
+				lesson_title: lesson_title,
+				lesson_body: lesson_body
+			}
+		}},
+			{safe: true, upsert: true},
+	callback)
 }

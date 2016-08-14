@@ -10,11 +10,12 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local'),Strategy;
+async = require('async');
+
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/elearn');
 var db = mongoose.connection;
-async = require('async');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -81,7 +82,6 @@ app.get('*', function(req, res, next) {
   next();
 });
 
-
 // Global Vars
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
@@ -89,7 +89,6 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash('error');
   next();
 });
-
 
 app.use('/', routes);
 app.use('/users', users);
@@ -105,7 +104,13 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
+/*
+ {{    *-^-*    Bottom of app.js   *-^-*    }}
+  ----------------------------------
+  <><><>  <><><>  <><><>
+  ----------------------------------
+  error handling section
+*/
 
 // development error handler
 // will print stacktrace

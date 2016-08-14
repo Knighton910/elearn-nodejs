@@ -16,10 +16,13 @@ var UserSchema = mongoose.Schema({
 	type:{
 		type:String
 	}
-	
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);
+
+
+//  {{    *-^-*    Bottom of model   *-^-*    }}
+//   --------------------------------------
 
 // Get User By Id
 module.exports.getUserById = function(id, callback){
@@ -28,7 +31,7 @@ module.exports.getUserById = function(id, callback){
 
 // Get User by Username
 module.exports.getUserByUsername = function(username, callback){
-	var query = {username: username};
+	var query = { username: username };
 	User.findOne(query, callback);
 }
 
