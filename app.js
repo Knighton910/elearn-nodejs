@@ -12,10 +12,12 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local'),Strategy;
 async = require('async');
 
+//----  | Database setup  |  ------- >
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/elearn');
 var db = mongoose.connection;
+//----  | Database setup  |  ------- > 
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

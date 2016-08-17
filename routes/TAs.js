@@ -35,6 +35,4 @@ router.post('/classes/register', function(req, res){
 	res.redirect('/Ta/classes');
 });
 
-
-
 module.exports = router;
