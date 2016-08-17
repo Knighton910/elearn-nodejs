@@ -8,7 +8,9 @@ var User = require('../models/user');
 // Include Student Model
 var Student = require('../models/student');
 // Include Instructor Model
-var Instructor= require('../models/instructor');
+var Instructor = require('../models/instructor');
+// Include Ta Model
+var Ta = require('../models/ta');
 
 // User Register
 router.get('/register', function(req, res, next) {
@@ -72,7 +74,8 @@ router.post('/register', function(req, res, next) {
 			User.saveStudent(newUser, newStudent, function(err, user){
 				console.log('Student created');
 			});
-		} else {
+
+		} else if{
 			console.log('Registering Instructor...');
 			var newInstructor = new Instructor({
 				first_name: first_name,
@@ -90,7 +93,19 @@ router.post('/register', function(req, res, next) {
 			User.saveInstructor(newUser, newInstructor, function(err, user){
 				console.log('Instructor created');
 			});
-		}
+
+		}else {
+      console.log('Registering Teacher Assistant')
+      var newTa = new Ta({
+				first_name: first_name,
+				last_name: last_name,
+				email: email,
+				username:username
+      });
+      User.saveTa(newUser, newTa, function(err, user) {
+        console.log('Ta created')
+      })
+    }
 
 		req.flash('success_msg', 'User Added');
 		res.redirect('/');
