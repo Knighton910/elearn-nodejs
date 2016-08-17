@@ -23,13 +23,13 @@ router.post('/register', function(req, res, next) {
 	var first_name     	= req.body.first_name;
 	var last_name     	= req.body.last_name;
 	var street_address  = req.body.street_address;
-	var city     		= req.body.city;
-	var state    		= req.body.state;
-	var zip     		= req.body.zip;
-	var email    		= req.body.email;
-	var username 		= req.body.username;
-	var password 		= req.body.password;
-	var password2 		= req.body.password2;
+	var city     		    = req.body.city;
+	var state    		    = req.body.state;
+	var zip     		    = req.body.zip;
+	var email    		    = req.body.email;
+	var username 		    = req.body.username;
+	var password 		    = req.body.password;
+	var password2       = req.body.password2;
 	var type            = req.body.type;
 
 	// Form Validation
@@ -57,7 +57,7 @@ router.post('/register', function(req, res, next) {
 
 		if(type == 'student'){
 			console.log('Registering Student...');
-
+//  --------------( creating Student ) -----
 			var newStudent = new Student({
 				first_name: first_name,
 				last_name: last_name,
@@ -74,9 +74,10 @@ router.post('/register', function(req, res, next) {
 			User.saveStudent(newUser, newStudent, function(err, user){
 				console.log('Student created');
 			});
-
-		} else if{
+//  --------------( creating Student ) -----
+		} else if(type == 'instructor'){
 			console.log('Registering Instructor...');
+//  --------------( creating Instructor ) -----
 			var newInstructor = new Instructor({
 				first_name: first_name,
 				last_name: last_name,
@@ -93,18 +94,21 @@ router.post('/register', function(req, res, next) {
 			User.saveInstructor(newUser, newInstructor, function(err, user){
 				console.log('Instructor created');
 			});
-
+//  --------------( creating Instructor ) -----
 		}else {
       console.log('Registering Teacher Assistant')
+//  --------------( creating Teacher assistant ) -----
       var newTa = new Ta({
 				first_name: first_name,
 				last_name: last_name,
 				email: email,
 				username:username
       });
+
       User.saveTa(newUser, newTa, function(err, user) {
         console.log('Ta created')
       })
+//  --------------( creating Teacher assistant ) -----
     }
 
 		req.flash('success_msg', 'User Added');
@@ -112,6 +116,8 @@ router.post('/register', function(req, res, next) {
 	}
 });
 
+
+//  ----------- (  Password section ) ----------------->
 passport.serializeUser(function(user, done) {
   done(null, user._id);
 });
@@ -150,6 +156,7 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+//  ----------- (  ending Password section ) ----------------->
 
 // Log User Out
 router.get('/logout', function(req, res){
@@ -160,5 +167,10 @@ router.get('/logout', function(req, res){
 });
 
 
-
 module.exports = router;
+
+/* ( note to self)
+--  hunting bugs  --
+so currently i'm working to fix this if elseif else statement
+
+*/

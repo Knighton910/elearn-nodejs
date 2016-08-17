@@ -64,3 +64,14 @@ module.exports.saveInstructor = function(newUser, newInstructor, callback){
 		async.parallel([newUser.save, newInstructor.save], callback);
 	});
 }
+
+// Create Ta User
+module.exports.saveTa = function(newUser, newTa, callback){
+	bcrypt.hash(newUser.password, 10, function(err, hash){
+		if(err) throw errl
+		// Set hash
+		newUser.password = hash;
+		console.log('Teacher Assistant is being saved');
+		async.parallel([newUser.save, newTa.save], callback);
+	});
+}
